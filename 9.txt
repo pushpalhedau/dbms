@@ -1,0 +1,25 @@
+create table library(B_id number, Bname varchar2(20), B_author varchar2(20));
+insert into library values(100, 'Math3', 'Dev');
+insert into library values(103, 'Hindi', 'Manik');
+insert into library values(102, 'Malyalam','Selvam');
+insert into library values(112, 'Marathi','R Vaidya');
+create table library_audit(B_id number,Bname varchar2(20),B_author varchar2(20));
+create trigger trig1 
+before 
+update or delete 
+on library 
+for each row 
+enable 
+begin 
+insert into library_audit values( 
+ :old.B_id, 
+ :old.Bname, 
+ :old.B_author 
+ ); 
+end; 
+/
+select * from library;
+delete from library where B_id=100;
+update library set B_id=105 where Bname='Hindi';
+select * from library;
+select * from library_audit;
