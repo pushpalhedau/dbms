@@ -1,0 +1,38 @@
+create table Dept (
+    deptId int not null,
+    deptName varchar(10),
+    primary key (deptId)
+);
+
+create table Emp (
+    empId int not null,
+    empName varchar(10) not null,
+    empSal int,
+    empDeptId int,
+    PRIMARY KEY (empId)
+);
+
+insert into Emp values(2, 'abc', 20000, 10);
+insert into Emp values(3, 'pqr', 20101, 20);
+insert into Emp values(1, 'xyz', 15000, 10);
+
+select * from Emp;
+
+insert into Dept values(10, 'cs');
+insert into Dept values(20, 'mech');
+
+select * from Dept;
+
+select * from Emp
+where empDeptId in (10, 30, 40);
+
+select * from Emp
+where empSal between 10000 and 30000;
+
+select count(*) from Emp;
+
+select empDeptId, avg(empSal) from Emp
+group by empDeptId;
+
+select * from Emp
+order by empSal;
