@@ -1,0 +1,52 @@
+create table customer (
+customer_id int,
+first_name varchar(20),
+primary key (customer_id)
+);
+
+create table orders (
+order_id int,
+amount int,
+customer_id int,
+primary key (order_id),
+foreign key (customer_id) references customer(customer_id)
+);
+
+insert into customer values(1, 'abc');
+insert into customer values(2, 'xyz');
+insert into customer values(3, 'pqr');
+
+insert into orders values(1, 100, 1);
+insert into orders values(2, 200, 1);
+insert into orders values(3, 300, 2);
+insert into orders values(4, 400, 2);
+
+select customer.first_name, orders.order_id, orders.amount
+from orders
+inner join customer on
+orders.customer_id = customer.customer_id;
+
+select customer.first_name, orders.order_id, orders.amount
+from orders
+left join customer on
+orders.customer_id = customer.customer_id;
+
+select customer.first_name, orders.order_id, orders.amount
+from orders
+right join customer on
+orders.customer_id = customer.customer_id;
+
+-- select customer.first_name, orders.order_id, orders.amount
+-- from orders
+-- full outer join customer on
+-- orders.customer_id = customer.customer_id;
+
+select customer.first_name, orders.order_id, orders.amount
+from orders
+left join customer on
+orders.customer_id = customer.customer_id
+union
+select customer.first_name, orders.order_id, orders.amount
+from orders
+right join customer on
+orders.customer_id = customer.customer_id;
