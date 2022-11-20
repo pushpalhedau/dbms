@@ -1,0 +1,42 @@
+create table Student (
+  stud_id int,
+  deptnm char(20),
+  sem int,
+  name char(20),
+  year int,
+  credits int
+);
+
+create table Teaches (
+  teacher_id int,
+  teacher_name char(20),
+  salary int,
+  deptnm char(20)
+);
+
+insert into Student values(1, 'cs', 5, 'abc', 2022, 44);
+insert into Student values(2, 'cs', 5, 'pqr', 2022, 43);
+
+insert into Teaches values(1, 'xyz', 200000, 'cs');
+insert into Teaches values(2, 'ghi', 200, 'cs');
+insert into Teaches values(3, 'def', 120000, 'mech');
+
+select * from Student;
+select * from Teaches;
+
+update Student
+set deptnm = 'it'
+where deptnm = 'cs';
+
+select * from Student;
+
+select deptnm, sum(salary) from Teaches
+group by deptnm
+having salary > avg(salary);
+
+delete from Teaches
+where salary < 2000;
+
+select * from Teaches;
+
+select deptnm, salary from Teaches group by deptnm;

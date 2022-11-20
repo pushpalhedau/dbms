@@ -1,0 +1,33 @@
+create table Dept (
+    deptId int not null,
+    deptName varchar(10),
+    primary key (deptId)
+);
+
+create table Emp (
+    empId int not null,
+    empName varchar(10) not null,
+    empSal int,
+    empDeptId int,
+    PRIMARY KEY (empId),
+    FOREIGN KEY (empDeptId) REFERENCES Dept(deptId)
+);
+
+insert into Emp values(2, 'abc', 20000, 1);
+insert into Emp values(3, 'pqr', 201001, 2);
+insert into Emp values(1, 'xyz', 15000, 1);
+
+select * from Emp;
+
+insert into Dept values(1, 'cs');
+insert into Dept values(2, 'mech');
+
+select * from Dept;
+
+alter table Dept
+add deptLoc varchar(10) unique;
+
+insert into Dept values(3, 'entc', 'akurdi');
+insert into Dept values(4, 'aiml', 'pune');
+
+select * from Dept;

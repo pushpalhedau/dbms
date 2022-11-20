@@ -1,0 +1,28 @@
+create table employee_master (
+  emp_id int,
+  first_name char(20),
+  middle char(20),
+  last_name char(20),
+  department char(20),
+  manager_id int
+);
+
+create table branch_master(
+  branch_id int,
+  branch_name char(20)
+);
+
+insert into branch_master values(1, 'akurdi');
+insert into branch_master values(2, 'pune');
+
+insert into employee_master values(1, 'abc', 'ambc', 'labc', 'cs', 1);
+insert into employee_master values(2, 'pqr', 'mpqr', 'lpqr', 'mech', 2);
+
+create index name
+on employee_master(first_name);
+
+create view firstView as 
+select emp_id, first_name, middle, last_name, department
+from employee_master;
+
+select * from firstView;
